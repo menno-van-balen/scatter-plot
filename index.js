@@ -90,5 +90,10 @@ function chart(data) {
     .attr("cy", (d) =>
       yScale(new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1]))
     )
-    .attr("r", 5);
+    .attr("r", 5)
+    .attr("data-xvalue", (d) => d.Year)
+    .attr(
+      "data-yvalue",
+      (d) => new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1])
+    );
 }
