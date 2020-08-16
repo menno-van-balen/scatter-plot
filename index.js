@@ -42,8 +42,8 @@ function chart(data) {
   const yScale = d3.scaleTime();
   yScale
     .domain([
-      maxTime.setSeconds(maxTime.getSeconds() + 5),
       minTime.setSeconds(minTime.getSeconds() - 5),
+      maxTime.setSeconds(maxTime.getSeconds() + 5),
     ])
     .range([h - padding, padding]);
 
@@ -73,4 +73,22 @@ function chart(data) {
     .attr("transform", "translate(0," + (h - padding) + ")")
     .attr("id", "x-axis")
     .call(xAxis);
+
+  // create circle plots
+  svg
+    .selectAll(".dot")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("class", "dot")
+    .attr("cx", (d) => xScale(new Date(d.Year)))
+    // .attr("cy", (d) =>
+    //   yScale(
+    //     new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1])
+    //   ).d3.timeFormat("%M:%S")
+    // )
+    .attr("cy", (d) =>
+      yScale(new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1]))
+    )
+    .attr("r", 5);
 }
