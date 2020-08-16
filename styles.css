@@ -3,6 +3,10 @@ body {
   background: content-box
     radial-gradient(rgb(201, 201, 201), rgb(105, 105, 105));
 }
+/* 
+.chart-wrapper {
+  margin: 50px;
+} */
 
 svg {
   border: 2px solid black;
@@ -23,9 +27,24 @@ svg {
   border-radius: 8px;
 }
 
-.source {
+#legend {
+  margin-right: 257px;
   text-align: right;
-  margin-right: 14vw;
+  font-size: small;
+}
+
+#white {
+  float: right;
+  width: fit-content;
+  background-color: white;
+}
+
+#blue {
+  margin-top: 5px;
+  float: right;
+  width: fit-content;
+  background-color: rgb(111, 0, 255);
+  color: white;
 }
 
 a {
