@@ -95,5 +95,9 @@ function chart(data) {
     .attr(
       "data-yvalue",
       (d) => new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1])
-    );
+    )
+    .attr("name", (d) => d.Name)
+    .attr("time", (d) => d.Time)
+    .attr("nationality", (d) => d.Nationality)
+    .attr("doping", (d) => d.Doping);
 }
