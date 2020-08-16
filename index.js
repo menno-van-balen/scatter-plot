@@ -76,21 +76,16 @@ function chart(data) {
 
   // create circle plots
   svg
-    .selectAll(".dot")
+    .selectAll("circle")
     .data(data)
     .enter()
     .append("circle")
     .attr("class", "dot")
     .attr("cx", (d) => xScale(new Date(d.Year)))
-    // .attr("cy", (d) =>
-    //   yScale(
-    //     new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1])
-    //   ).d3.timeFormat("%M:%S")
-    // )
     .attr("cy", (d) =>
       yScale(new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1]))
     )
-    .attr("r", 5)
+    .attr("r", 6)
     .attr("data-xvalue", (d) => d.Year)
     .attr(
       "data-yvalue",
@@ -99,5 +94,29 @@ function chart(data) {
     .attr("name", (d) => d.Name)
     .attr("time", (d) => d.Time)
     .attr("nationality", (d) => d.Nationality)
-    .attr("doping", (d) => d.Doping);
+    .attr("doping", (d) => d.Doping)
+    .on("mouseover", function (d) {
+      tooltip.transition().duration(200).style("opacity", 0.8);
+      tooltip.html(
+        d3.select(this).attr("name") +
+          " " +
+          "(" +
+          d3.select(this).attr("nationality") +
+          ")" +
+          "<br/>" +
+          "year: " +
+          d3.select(this).attr("data-xvalue") +
+          "<br/>" +
+          "time: " +
+          d3.select(this).attr("time") +
+          "<br/>" +
+          d3.select(this).attr("doping")
+      );
+      tooltip
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 75 + "px");
+    })
+    .on("mouseout", function (d) {
+      tooltip.transition().duration(500).style("opacity", 0);
+    });
 }
