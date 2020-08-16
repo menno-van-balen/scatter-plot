@@ -85,7 +85,26 @@ function chart(data) {
     .attr("cy", (d) =>
       yScale(new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1]))
     )
-    .attr("r", 6)
+    .attr("r", (d) => {
+      if (d.Doping) {
+        return 6;
+      } else {
+        return 9;
+      }
+    })
+    .style("stroke", "black")
+    .style("fill", function (d) {
+      if (d.Doping) {
+        return "blue";
+      } else {
+        return "white";
+      }
+    })
+    .style("fill-opacity", (d) => {
+      if (d.Doping) {
+        return 0.2;
+      }
+    })
     .attr("data-xvalue", (d) => d.Year)
     .attr(
       "data-yvalue",
