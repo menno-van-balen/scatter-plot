@@ -75,6 +75,7 @@ function chart(data) {
     .call(xAxis);
 
   // create circle plots
+  let doubleValues = [];
   svg
     .selectAll("circle")
     .data(data)
@@ -86,11 +87,22 @@ function chart(data) {
       yScale(new Date(0, 0, 0, 0, d.Time.split(":")[0], d.Time.split(":")[1]))
     )
     .attr("r", (d) => {
-      if (d.Doping) {
-        return 6;
+      // avoid disapering dots by making r smaller if time already has been plotted
+      if (!doubleValues.includes(d.Time)) {
+        doubleValues.push(d.Time);
+        if (d.Doping) {
+          return 6;
+        } else {
+          return 9;
+        }
       } else {
-        return 9;
+        if (d.Doping) {
+          return 3;
+        } else {
+          return 6;
+        }
       }
+      console.log(doubleValues);
     })
     .style("stroke", "black")
     .style("fill", function (d) {
@@ -115,7 +127,7 @@ function chart(data) {
     .attr("nationality", (d) => d.Nationality)
     .attr("doping", (d) => d.Doping)
     .on("mouseover", function (d) {
-      tooltip.transition().duration(200).style("opacity", 0.8);
+      tooltip.transition().duration(100).style("opacity", 0.8);
       tooltip.html(
         d3.select(this).attr("name") +
           " " +
@@ -136,6 +148,6 @@ function chart(data) {
         .style("top", d3.event.pageY - 75 + "px");
     })
     .on("mouseout", function (d) {
-      tooltip.transition().duration(500).style("opacity", 0);
+      tooltip.transition().duration(400).style("opacity", 0);
     });
 }
