@@ -56,7 +56,7 @@ function chart(data) {
     ])
     .range([padding, w - padding]);
 
-  // define the y  and x axis
+  // define the y and x axis
   const yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%M:%S"));
 
   const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
@@ -93,16 +93,15 @@ function chart(data) {
         if (d.Doping) {
           return 6;
         } else {
-          return 9;
+          return 8;
         }
       } else {
         if (d.Doping) {
           return 3;
         } else {
-          return 6;
+          return 5;
         }
       }
-      console.log(doubleValues);
     })
     .style("stroke", "black")
     .style("fill", function (d) {
