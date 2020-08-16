@@ -3,10 +3,12 @@ body {
   background: content-box
     radial-gradient(rgb(201, 201, 201), rgb(105, 105, 105));
 }
-/* 
+
 .chart-wrapper {
-  margin: 50px;
-} */
+  margin: 0 auto;
+  width: 1000px;
+  text-align: left;
+}
 
 svg {
   border: 2px solid black;
@@ -28,7 +30,6 @@ svg {
 }
 
 #legend {
-  margin-right: 257px;
   text-align: right;
   font-size: small;
 }
@@ -47,6 +48,16 @@ svg {
   color: white;
 }
 
+.credits {
+  letter-spacing: 3px;
+}
+
 a {
-  font-size: small;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bolder;
+  cursor: pointer;
 }
