@@ -127,6 +127,7 @@ function chart(data) {
     .attr("nationality", (d) => d.Nationality)
     .attr("doping", (d) => d.Doping)
     .on("mouseover", function (d) {
+      tooltip.attr("data-year", d3.select(this).attr("data-xvalue"));
       tooltip.transition().duration(100).style("opacity", 0.8);
       tooltip.html(
         d3.select(this).attr("name") +
